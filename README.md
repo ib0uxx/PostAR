@@ -1,6 +1,6 @@
 # PostAR
 
-##Context
+##Context##
 PostAR is an Erasmus Project with students from France, Spain and the Netherlands. The goal was to create this website by working together, improving our skills in project management, in development and even in communication.
 
 ## Description
