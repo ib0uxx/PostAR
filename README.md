@@ -16,6 +16,6 @@ PostAR is a web application that allows users to create and send virtual postcar
 ## Technologies Used
 - **Frontend:** HTML, CSS, JavaScript (React)
 - **Backend:** 
-- **Database:** 
+- **Database:** Supabase
 - **AR Integration:** Unity, WebAR
 - **Cloud Storage:** AWS S3 / Firebase Storage
