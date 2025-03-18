@@ -13,9 +13,10 @@ const Home: React.FC = () => {
       <img src={clockIcon} alt="Clock Icon" className="clock-icon" />
       <h1>Post AR</h1>
       <p>Direct, simple, engaging. <strong>Send memories, not just cards.</strong></p>
-      <Button text="Create Account" onClick={() => navigate('/signup')} />
+      <Button text="Create Account →" onClick={() => navigate('/signup')} />
       <div className="separator"></div>
-      <Button text="I have an account" type="secondary" onClick={() => navigate('/login')} />
+
+      <Button text="I have an account →" type="secondary" onClick={() => navigate('/login')} />
     </div>
   );
 };

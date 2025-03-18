@@ -80,7 +80,6 @@ p strong {
 }
 
 @media (max-width: 768px) {
-  
   .container {
     text-align: left;
     max-width: 90%;
