@@ -30,20 +30,37 @@ body {
   margin-bottom: 20px;
 }
 
-input {
+.input-container {
+  position: relative;
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  outline: none;
+  margin-bottom: 15px;
 }
 
-input::placeholder {
-  color: rgba(255, 255, 255, 0.8);
+.input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-bottom: 2px solid white;
+  background: transparent;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+  text-align: left;
 }
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 
 .forgot-password {
   font-size: 0.9rem;
@@ -60,6 +77,7 @@ input::placeholder {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .button {
@@ -73,9 +91,10 @@ input::placeholder {
 }
 
 .button.primary {
-  background: #7456c7;
+  background: #7255c1;
   color: white;
   margin-left: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .button.secondary {
@@ -84,8 +103,23 @@ input::placeholder {
   margin-right: 10px;
 }
 
-.or-text {
+/* ✅ Séparateur avec dégradé */
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 20px 0;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, white, transparent);
+  margin: 0 10px;
+  opacity: 70%;
+}
+
+.or-text {
   opacity: 0.8;
 }
 
@@ -99,11 +133,12 @@ input::placeholder {
   background: white;
   border-radius: 10px;
   padding: 8px 36px;
+  margin-top: 10px;
   border: none;
   cursor: pointer;
   transition: 0.3s;
-  width: 100px; 
-  height: 40px; 
+  width: 100px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
