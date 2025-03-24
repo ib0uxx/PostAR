@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 20px;
 }
 
 .profileContainer {
@@ -155,4 +156,38 @@
   font-size: 24px;
   font-weight: bold;
   color: #6c4af2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profileContainer {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 400px;
+  }
+
+  .rightColumn {
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .options {
+    width: 100%;
+    text-align: center;
+  }
+
+  .options button {
+    text-align: center;
+    width: 100%;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .statBox {
+    width: 100%;
+  }
 }
