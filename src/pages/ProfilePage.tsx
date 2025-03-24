@@ -9,7 +9,7 @@ const ProfilePage: React.FC = () => {
     <div className={styles.profileWrapper}>
       <Navbar />
       <div className={styles.profileContainer}>
-        {/* Première colonne */}
+        {}
         <div className={styles.leftColumn}>
           <h2 className={styles.profileTitle}>My profile</h2>
           <div className={styles.profileCard}>
@@ -31,7 +31,7 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
         
-        {/* Deuxième colonne */}
+        {}
         <div className={styles.rightColumn}>
           <button className={styles.editProfile}><FaEdit /> Edit your profile</button>
           <div className={styles.options}>

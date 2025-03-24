@@ -19,7 +19,6 @@
   gap: 40px;
 }
 
-/* Première colonne */
 .leftColumn {
   display: flex;
   flex-direction: column;
@@ -29,6 +28,7 @@
 
 .profileTitle {
   align-self: flex-start;
+  font-size: clamp(18px, 2vw, 24px);
 }
 
 .profileCard {
@@ -50,8 +50,8 @@
 }
 
 .profilePic {
-  width: 120px;
-  height: 120px;
+  width: clamp(80px, 20vw, 120px);
+  height: clamp(80px, 20vw, 120px);
   border-radius: 15px;
   object-fit: cover;
 }
@@ -62,10 +62,10 @@
   right: 5px;
   color: white;
   background-color: green;
-  font-size: 26px;
+  font-size: clamp(16px, 4vw, 26px);
   border-radius: 50%;
   padding: 3px;
-} 
+}
 
 .userInfo {
   margin-left: 15px;
@@ -76,22 +76,21 @@
 
 .email {
   color: #555;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .description {
-  font-size: 14px;
+  font-size: clamp(12px, 2vw, 14px);
   color: #666;
   margin-top: 10px;
   text-align: left;
 }
 
-/* Deuxième colonne */
 .rightColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
+  width: clamp(180px, 30vw, 250px);
 }
 
 .editProfile {
@@ -103,7 +102,7 @@
   border: none;
   cursor: pointer;
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: clamp(16px, 3vw, 18px);
   margin-top: 40px;
 }
 
@@ -121,7 +120,7 @@
 .options button {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: clamp(16px, 3vw, 20px);
   padding: 12px 0;
   cursor: pointer;
   text-align: left;
@@ -130,7 +129,7 @@
 .logout {
   color: red;
   font-weight: bold;
-  font-size: 20px; 
+  font-size: clamp(16px, 3vw, 20px);
   padding: 12px 0;
 }
 
@@ -147,22 +146,22 @@
   border-radius: 0;
   flex: 1;
   text-align: center;
-  font-size: 18px;
+  font-size: clamp(14px, 3vw, 18px);
   font-weight: bold;
 }
 
 .statBox span {
   display: block;
-  font-size: 24px;
+  font-size: clamp(18px, 4vw, 24px);
   font-weight: bold;
   color: #6c4af2;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .profileContainer {
     flex-direction: column;
     align-items: center;
+    gap: 10px;
     padding-top: 400px;
   }
 
