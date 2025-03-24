@@ -1,0 +1,8 @@
+YOU NEED TO RUN THIS COMMANDS IN YOUR CONSOLE BEFORE IT WORKS
+
+npm install @supabase/supabase-js
+npm install dotenv
+npm install express
+npm install cors
+cd backend
+node server.js
