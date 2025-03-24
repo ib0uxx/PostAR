@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Supabase Auth</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="supabaseClient.js" defer></script>
+    <script src="register.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            width: 100%;
+            background: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 60px;
+            color: white;
+        }
+
+        .navbar h1 {
+            margin-left: 20px;
+            font-size: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .container h2 {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #005f73;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #008CBA;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Supabase Auth</h1>
+    </div>
+
+    <div class="container">
+        <h2>Register</h2>
+        <input type="email" id="register-email" placeholder="Email" required>
+        <input type="password" id="register-password" placeholder="Password" required>
+        <button onclick="handleRegister()">Sign Up</button>
+        <p>Already have an account? <a href="login">Login here</a></p>
+    </div>
+
+    <script>
+        const { createClient } = supabase;
+        const supabaseUrl = "https://tbzgewjnfcjviexmgnsq.supabase.co"; 
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiemdld2puZmNqdmlleG1nbnNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3MTkyMjAsImV4cCI6MjA1NzI5NTIyMH0.aGbANeeHSe-MskK3U6z-DJI-x6TSAryHoS6mKonCF6w"; // Replace with your real key
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+        async function handleRegister() {
+            const email = document.getElementById("register-email").value;
+            const password = document.getElementById("register-password").value;
+
+            const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
+            if (error) {
+                alert("❌ Registration failed: " + error.message);
+                console.error("Registration error:", error.message);
+            } else {
+                alert("✅ Registration successful! Please check your email to verify your account.");
+                console.log("Registered:", data.user);
+                setTimeout(() => {
+                    window.location.href = "login";
+                }, 2000); // Redirect after 2 seconds
+            }
+        }
+    </script>
+
+</body>
+</html>
