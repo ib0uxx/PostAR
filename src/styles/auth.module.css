@@ -166,5 +166,6 @@ button.social-button img[alt="Google"] {
 .link {
   text-decoration: underline;
   font-weight: 600;
+  cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
-import styles from '../auth.module.css';
+import styles from '../styles/auth.module.css';
 import googleIcon from '../assets/google.png';
 import appleIcon from '../assets/apple.png';
 
