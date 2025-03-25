@@ -1,167 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login with Supabase</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="supabaseClient.js" defer></script>
     <script src="login.js" defer></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
 
-        .navbar {
-            width: 100%;
-            background: #333;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 60px;
-            color: white;
-        }
+      .navbar {
+        width: 100%;
+        background: #333;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 60px;
+        color: white;
+      }
 
-        .navbar h1 {
-            margin-left: 20px;
-            font-size: 20px;
-        }
+      .navbar h1 {
+        margin-left: 20px;
+        font-size: 20px;
+      }
 
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-            margin-top: 80px;
-        }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        margin-top: 80px;
+      }
 
-        .container h2 {
-            margin-bottom: 15px;
-        }
+      .container h2 {
+        margin-bottom: 15px;
+      }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
 
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 8px;
-        }
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+      }
 
-        .checkbox-container input {
-            margin-right: 5px;
-        }
+      .checkbox-container input {
+        margin-right: 5px;
+      }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background: #008CBA;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-top: 10px;
-        }
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: #008cba;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
 
-        button:hover {
-            background: #005f73;
-        }
+      button:hover {
+        background: #005f73;
+      }
 
-        p {
-            margin-top: 10px;
-            font-size: 14px;
-        }
+      p {
+        margin-top: 10px;
+        font-size: 14px;
+      }
 
-        a {
-            color: #008CBA;
-            text-decoration: none;
-        }
+      a {
+        color: #008cba;
+        text-decoration: none;
+      }
 
-        a:hover {
-            text-decoration: underline;
-        }
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="navbar">
-        <h1>Supabase Auth</h1>
+      <h1>Supabase Auth</h1>
     </div>
 
     <div class="container">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email" required>
-        <input type="password" id="login-password" placeholder="Password" required>
-        
-        <div class="checkbox-container">
-            <input type="checkbox" id="admin-checkbox">
-            <label for="admin-checkbox">Login as Admin</label>
-        </div>
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email" required />
+      <input
+        type="password"
+        id="login-password"
+        placeholder="Password"
+        required
+      />
 
-        <button onclick="handleLogin()">Login</button>
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
+      <div class="checkbox-container">
+        <input type="checkbox" id="admin-checkbox" />
+        <label for="admin-checkbox">Login as Admin</label>
+      </div>
+
+      <button onclick="handleLogin()">Login</button>
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
 
     <script>
-        const { createClient } = supabase;
-        const supabaseUrl = "https://tbzgewjnfcjviexmgnsq.supabase.co"; // Replace with your Supabase URL
-        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiemdld2puZmNqdmlleG1nbnNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3MTkyMjAsImV4cCI6MjA1NzI5NTIyMH0.aGbANeeHSe-MskK3U6z-DJI-x6TSAryHoS6mKonCF6w"; // Replace with your Supabase Anon Key
-        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+      const { createClient } = supabase;
+      const supabaseUrl = "https://tbzgewjnfcjviexmgnsq.supabase.co"; // Replace with your Supabase URL
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiemdld2puZmNqdmlleG1nbnNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3MTkyMjAsImV4cCI6MjA1NzI5NTIyMH0.aGbANeeHSe-MskK3U6z-DJI-x6TSAryHoS6mKonCF6w"; // Replace with your Supabase Anon Key
+      const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
-        async function handleLogin() {
-            const email = document.getElementById("login-email").value;
-            const password = document.getElementById("login-password").value;
-            const isAdmin = document.getElementById("admin-checkbox").checked;
+      async function handleLogin() {
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+        const isAdmin = document.getElementById("admin-checkbox").checked;
 
-            console.log("Attempting login as " + (isAdmin ? "Admin" : "User"));
+        console.log("Attempting login as " + (isAdmin ? "Admin" : "User"));
 
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email,
-                password,
-            });
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password,
+        });
 
-            if (error) {
-                alert("❌ Login failed: " + error.message);
-                console.error("Login error:", error.message);
-            } else {
-                alert("✅ Login successful!");
-                console.log("Logged in:", data.user);
+        if (error) {
+          alert("❌ Login failed: " + error.message);
+          console.error("Login error:", error.message);
+        } else {
+          alert("✅ Login successful!  " + data.user.email);
+          console.log("Logged in:", data.user);
 
-                // Redirect based on role
-                if (isAdmin) {
-                    window.location.href = "admin-dashboard.html";
-                } else {
-                    window.location.href = "dashboard.html";
-                }
-            }
+          // Redirect based on role
+          if (isAdmin) {
+            window.location.href = "admin-dashboard.html";
+          } else {
+            window.location.href = "dashboard.html";
+          }
         }
+      }
     </script>
-
-</body>
+  </body>
 </html>
