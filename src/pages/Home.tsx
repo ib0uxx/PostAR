@@ -8,13 +8,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="wave-bottom-left"></div>
-      <div className="wave-top-right"></div>
-      <div className="circle-top-left"></div>
-      <div className="circle-bottom-left"></div>
-      <div className="circle-bottom-right"></div>
-      <div className="circle-left-offscreen"></div>
-      <div className="circle-right-offscreen"></div>
       <div className="container">
         <h1>Post AR</h1>
         <p>Direct, simple, engaging. <strong>Send memories, not just cards.</strong></p>
