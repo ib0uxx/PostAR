@@ -96,6 +96,7 @@ body, html {
   color: #666;
   margin-top: 8px;
   text-align: left;
+  margin-bottom: 10px;
 }
 
 .rightColumn {
@@ -153,7 +154,7 @@ body, html {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 0px;
   gap: 10px;
 }
 
@@ -213,5 +214,17 @@ body, html {
 
   .statBox {
     width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileNavbarWrapper {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .profileWrapper {
+    padding-bottom: 70px;
   }
 }
