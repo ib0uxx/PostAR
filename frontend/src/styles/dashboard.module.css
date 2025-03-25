@@ -1,0 +1,92 @@
+.dashboardWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 9999;
+  }
+  
+  .navbarWrapper {
+    width: 100%;
+  }
+  
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+    flex-grow: 1;
+  }
+  
+  .profileSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileImage {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .greeting {
+    font-size: 2rem;
+    margin-left: 15px;
+    font-weight: 600;
+  }
+  
+  .userName {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .addButton {
+    background-color: #00AEEF;
+    color: white;
+    border: none;
+    padding: 20px 50px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-left: 15px;
+    transition: background 0.3s ease;
+  }
+  
+  .addButton:hover {
+    background-color: #0192c7;
+  }
+  
+  .mobileNavbarWrapper {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .mobileNavbarWrapper {
+      display: block;
+    }
+  
+    .content {
+      justify-content: center;
+      padding: 20px;
+    }
+  
+    .profileSection {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
