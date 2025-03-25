@@ -4,6 +4,8 @@ body, html {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
 }
 
 .profileWrapper {
@@ -17,6 +19,7 @@ body, html {
   padding: 10px;
   box-sizing: border-box;
   overflow-x: hidden;
+  overflow-y: auto
 }
 
 .profileContainer {
