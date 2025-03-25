@@ -125,7 +125,7 @@ body {
 }
 .submitButton:hover {
     transition: 0.3s ease-in-out;
-    box-shadow: 0px 15px 40px -5px #646cff 0.25;
+    box-shadow: 0px 15px 40px -5px #646cff;
 }
 .navbar {
     margin-bottom: 50px;

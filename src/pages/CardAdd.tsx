@@ -8,7 +8,7 @@ import { faCamera, faVideo } from "@fortawesome/free-solid-svg-icons";
 
 // im adding a bit of commentairy so its easier to see what does what.
 // i have almost no experience with backend and databases so change what you need to change
-// its easier for backend to read
+// chatgpt has been used for parts of the backend of this page
 
 
 const CardAdd: React.FC = () => {
@@ -60,7 +60,7 @@ const CardAdd: React.FC = () => {
     formDataToSend.append("message", formData.message);
     formDataToSend.append("media", media);
 
-    try {   //                           v sends the request here v
+    try {//                               v sends the request here v
       const response = await axios.post("http://localhost:5000/upload", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
