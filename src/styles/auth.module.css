@@ -170,12 +170,7 @@ button.social-button img[alt="Google"] {
 }
 
 .welcome-title {
-  position: absolute;
-  top: 5%; 
-  left: 30px;
-  color: white;
-  font-size: 2.3rem;
-  font-weight: bold;
+  display: none; /* Caché par défaut */
 }
 
 
@@ -211,6 +206,16 @@ button.social-button img[alt="Google"] {
     flex-direction: column;
     justify-content: flex-end; 
     min-height: 100vh;
+  }
+
+  .welcome-title {
+    display: block; 
+    position: absolute;
+    top: 5%;
+    left: 30px;
+    color: white;
+    font-size: 2.3rem;
+    font-weight: bold;
   }
 }
 
