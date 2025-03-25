@@ -12,6 +12,7 @@ const Signup: React.FC = () => {
     <div className={styles['auth-container']}>
       <div className={styles['login-box']}>
         <h1 className={styles['title']}>Sign up</h1>
+        <Input type="username" placeholder="Username" />
         <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
         <Input type="password" placeholder="Confirm Password" />

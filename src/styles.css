@@ -13,7 +13,7 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-  z-index: 0; /* Add this line */
+  z-index: 0; 
 }
 
 body .wave-bottom-left {
