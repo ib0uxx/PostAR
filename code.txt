@@ -1,3 +1,54 @@
+profilepage:
+import React from 'react';
+import styles from '../styles/profile.module.css';
+import Navbar from '../components/Navbar';
+import profilePic from '../assets/profile.png';
+import { FaEdit, FaCheckCircle } from 'react-icons/fa';
+
+const ProfilePage: React.FC = () => {
+  return (
+    <div className={styles.profileWrapper}>
+      <div className={styles.navbarWrapper}>
+        <Navbar />
+      </div>
+      <div className={styles.profileContainer}>
+        <div className={styles.leftColumn}>
+          <h2 className={styles.profileTitle}>My profile</h2>
+          <div className={styles.profileCard}>
+            <div className={styles.profileHeader}>
+              <div className={styles.imageContainer}>
+                <img src={profilePic} alt="Profile" className={styles.profilePic} />
+                <FaCheckCircle className={styles.verifiedIcon} />
+              </div>
+              <div className={styles.userInfo}>
+                <h3>John Doe</h3>
+                <p className={styles.email}>johndoe@mail.com</p>
+              </div>
+            </div>
+            <p className={styles.description}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div className={styles.stats}>
+            <div className={styles.statBox}><span>6</span> Cards sent</div>
+            <div className={styles.statBox}><span>4</span> Cards received</div>
+          </div>
+        </div>
+        <div className={styles.rightColumn}>
+          <button className={styles.editProfile}><FaEdit /> Edit your profile</button>
+          <div className={styles.options}>
+            <button>About App</button>
+            <button>Contact us</button>
+            <button className={styles.logout}>Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProfilePage;
+css:
 body, html {
   margin: 0;
   padding: 0;
@@ -39,7 +90,7 @@ body, html {
 
 .profileTitle {
   align-self: flex-start;
-  font-size: clamp(22px, 2.5vw, 24px);
+  font-size: clamp(16px, 2vw, 22px);
 }
 
 .profileCard {
@@ -62,8 +113,8 @@ body, html {
 }
 
 .profilePic {
-  width: clamp(120px, 20vw, 120px);
-  height: clamp(120px, 20vw, 120px);
+  width: clamp(70px, 18vw, 110px);
+  height: clamp(70px, 18vw, 110px);
   border-radius: 15px;
   object-fit: cover;
 }
@@ -74,7 +125,7 @@ body, html {
   right: 5px;
   color: white;
   background-color: green;
-  font-size: clamp(30px, 3.5vw, 24px);
+  font-size: clamp(14px, 3vw, 22px);
   border-radius: 50%;
   padding: 3px;
 }
@@ -88,11 +139,11 @@ body, html {
 
 .email {
   color: #555;
-  font-size: clamp(18px, 2vw, 16px);
+  font-size: clamp(12px, 1.8vw, 14px);
 }
 
 .description {
-  font-size: clamp(18px, 2.2vw, 16px);
+  font-size: clamp(12px, 2vw, 14px);
   color: #666;
   margin-top: 8px;
   text-align: left;
@@ -115,7 +166,7 @@ body, html {
   border: none;
   cursor: pointer;
   margin-bottom: 15px;
-  font-size: clamp(22px, 2.5vw, 18px);
+  font-size: clamp(14px, 2.5vw, 16px);
   padding: 8px 12px;
   border-radius: 5px;
 }
@@ -135,7 +186,7 @@ body, html {
 .options button {
   background: none;
   border: none;
-  font-size: clamp(22px, 2.5vw, 20px);
+  font-size: clamp(14px, 2.5vw, 18px);
   padding: 10px 0;
   cursor: pointer;
   text-align: left;
@@ -145,7 +196,7 @@ body, html {
 .logout {
   color: red;
   font-weight: bold;
-  font-size: clamp(20px, 2.5vw, 20px);
+  font-size: clamp(14px, 2.5vw, 18px);
   padding: 10px 0;
 }
 
@@ -163,13 +214,13 @@ body, html {
   border-radius: 5px;
   flex: 1;
   text-align: center;
-  font-size: clamp(18px, 2.5vw, 18px);
+  font-size: clamp(12px, 2.5vw, 16px);
   font-weight: bold;
 }
 
 .statBox span {
   display: block;
-  font-size: clamp(22px, 3.5vw, 24px);
+  font-size: clamp(16px, 3.5vw, 22px);
   font-weight: bold;
   color: #6c4af2;
 }
