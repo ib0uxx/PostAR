@@ -17,7 +17,7 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles['auth-container']}>
-      {/* Ajout du titre en haut à gauche */}
+      {}
       <h2 className={styles['welcome-title']}>Welcome <br></br> Back !</h2>
       
       <div className={styles['login-box']}>
