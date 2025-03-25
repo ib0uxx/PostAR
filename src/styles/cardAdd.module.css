@@ -103,9 +103,9 @@ body {
     max-width: 200px;
     height: 45px;
     background-color: white;
-    color: #646cff;
+    color: red;
     border-radius: 8px;
-    border: 2px solid #646cff;
+    border: 2px solid red;
 }
 .submitButton {
     font-size: 18px;
@@ -122,6 +122,10 @@ body {
 .cancelButton:hover {
     transition: 0.3s ease-in-out;
     box-shadow: 0px 15px 40px -5px rgba(255, 0, 0, 0.25);
+}
+.submitButton:hover {
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 15px 40px -5px #646cff 0.25;
 }
 .navbar {
     margin-bottom: 50px;
