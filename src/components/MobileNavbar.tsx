@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHome, FaUser, FaPlus, FaTimes, FaImage, FaQrcode, FaSync, FaRegCreditCard } from 'react-icons/fa';
+import { FaHome, FaUser, FaPlus, FaTimes, FaImage, FaQrcode, FaSync, FaRegCreditCard, FaPlay } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from '../styles/mobileNavbar.module.css';
 
@@ -8,7 +8,6 @@ const MobileNavbar: React.FC = () => {
 
   return (
     <>
-      {}
       {isExpanded && <div className={styles.overlay} onClick={() => setIsExpanded(false)}></div>}
 
       <div className={styles.mobileNavbar}>
@@ -23,6 +22,7 @@ const MobileNavbar: React.FC = () => {
             <div className={styles.expandedButtons}>
               <button className={styles.expandedButton}><FaImage /></button>
               <button className={styles.expandedButton}><FaQrcode /></button>
+              <button className={styles.expandedButton}><FaPlay /></button> {/* Nouveau bouton Play */}
             </div>
           )}
         </div>
