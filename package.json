@@ -1,8 +1,4 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "@supabase/supabase-js": "^2.49.3"
-=======
   "name": "post-ar",
   "private": true,
   "version": "0.0.0",
@@ -14,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.3",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.8.4",
@@ -37,6 +34,5 @@
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
->>>>>>> d16a1d3be170631c13675dd695932cc11402cb3d
   }
 }

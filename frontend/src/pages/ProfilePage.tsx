@@ -1,19 +1,15 @@
 import React from 'react';
 import styles from '../styles/profile.module.css';
 import Navbar from '../components/Navbar';
-import MobileNavbar from '../components/MobileNavbar';
 import profilePic from '../assets/profile.png';
 import { FaEdit, FaCheckCircle } from 'react-icons/fa';
 
 const ProfilePage: React.FC = () => {
   return (
     <div className={styles.profileWrapper}>
-      {/* Navbar Desktop */}
-      <div className={styles.navbarWrapper}>
-        <Navbar />
-      </div>
-
       {}
+      <Navbar />
+      
       <div className={styles.profileContainer}>
         <div className={styles.leftColumn}>
           <h2 className={styles.profileTitle}>My profile</h2>
@@ -46,11 +42,6 @@ const ProfilePage: React.FC = () => {
             <button className={styles.logout}>Logout</button>
           </div>
         </div>
-      </div>
-
-      {/* Navbar Mobile */}
-      <div className={`${styles.mobileNavbarWrapper} mobileNavbarOnly`}>
-        <MobileNavbar />
       </div>
     </div>
   );
