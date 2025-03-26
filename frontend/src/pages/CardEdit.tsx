@@ -4,10 +4,6 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import styles from "../styles/cardEdit.module.css";
 
-// im adding a bit of commentairy so its easier to see what does what.
-// i have almost no experience with backend and databases so change what you need to change
-// chatgpt has been used for parts of the backend of this page
-
 
 const CardEdit: React.FC = () => {
   const { id } = useParams(); // get card id from URL
@@ -18,28 +14,36 @@ const CardEdit: React.FC = () => {
     date: "",
     message: "",
     imageUrl: "",
-  }); // the card data is stored in useState (title, date, message, image)
+  });
+
+  const [initialCard, setInitialCard] = useState({
+    title: "",
+    date: "",
+    message: "",
+    imageUrl: "",
+  });
 
   useEffect(() => {
     axios.get(`http://localhost:5000/cards/${id}`)
       .then((response) => {
         setCard(response.data); // update the state with fetched card data
+        setInitialCard(response.data); // store the initial data to reset later
       })
       .catch((error) => {
         console.error("Error fetching card:", error);
       });
   }, [id]);
 
-// this function updates the state when the user types in an input field
-
+  // this function updates the state when the user types in an input field
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCard({ ...card, [e.target.name]: e.target.value }); // e.target.name dynamically updates title, date, or message in state
+    setCard({ ...card, [e.target.name]: e.target.value });
   };
 
+  // resets form to the initially fetched data
+  const handleReset = () => {
+    setCard(initialCard);
+  };
 
-  // prevents form from reloading (e.preventDefault())
-  // sends a PUT request to update the card (/cards/:id)
-  // if successful, an alert appears and the user is redirected to /
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -51,15 +55,12 @@ const CardEdit: React.FC = () => {
     }
   };
 
-  // asks for confirmation before deleting (window.confirm)
-  // sends a DELETE request to /cards/:id
-  // if successful, alerts the user and redirects to /
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this card?")) {
       try {
         await axios.delete(`http://localhost:5000/cards/${id}`);
         alert("Card deleted!");
-        navigate("/"); // redirect after delete
+        navigate("/");
       } catch (error) {
         console.error("Delete failed:", error);
       }
@@ -93,7 +94,7 @@ const CardEdit: React.FC = () => {
       </div>
       <div className={styles.cardButtons}>
         <button className={styles.cancelButton} onClick={handleDelete}>DELETE CARD</button>
-        <button className={styles.cancelButton} onClick={() => navigate("/")}>Cancel</button>
+        <button className={styles.cancelButton} onClick={() => navigate("/dashboard")}>Cancel</button>
         <button className={styles.submitButton} onClick={handleSubmit}>Save Changes</button>
       </div>
     </div>

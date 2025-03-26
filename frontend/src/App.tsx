@@ -6,9 +6,10 @@ import Signup from "./pages/Signup";
 import CardAdd from "./pages/CardAdd";
 import CardEdit from "./pages/CardEdit";
 import ProfilePage from "./pages/ProfilePage";
+import MyCards from "./pages/MyCards";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
-import { UserProvider } from "./UserContext"; // Importation du UserProvider
+import { UserProvider } from "./UserContext";
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/cardAdd" element={<CardAdd />} />
             <Route path="/cardEdit" element={<CardEdit />} />
+            <Route path="/MyCards" element={<MyCards />} />
           </Route>
         </Routes>
       </Router>
