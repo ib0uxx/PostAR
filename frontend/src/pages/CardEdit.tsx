@@ -4,9 +4,6 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import styles from "../styles/cardEdit.module.css";
 
-// im adding a bit of commentairy so its easier to see what does what.
-// i have almost no experience with backend and databases so change what you need to change
-// chatgpt has been used for parts of the backend of this page
 
 const CardEdit: React.FC = () => {
   const { id } = useParams(); // get card id from URL
