@@ -5,8 +5,10 @@ import styles from "../styles/auth.module.css";
 import googleIcon from "../assets/google.png";
 import appleIcon from "../assets/apple.png";
 import { supabase } from "../../../backend/supabaseClient"; 
+import { useUser } from "../UserContext";
 
 const Login: React.FC = () => {
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,32 +23,29 @@ const Login: React.FC = () => {
       password,
     });
     console.log(data);
-
     if (error) {
       setError(error.message);
-      return
-    }
+    } else {
+      const userId = data.user?.id;
 
-    if (data.user) {
-      const userId = data.user.id;
-      console.log(userId);
-      const { data: userInfo, error: userError } = await supabase
-        .from("User")
-        .select("*")
-        .eq("auth_id", userId)
-        .maybeSingle();
+      if (userId) {
+        // Récupérer les infos du user dans la table User
+        const { data: userInfo, error: userError } = await supabase
+          .from("User")
+          .select("*")
+          .eq("auth_id", userId)
+          .single();
 
-      if (userError) {
-        console.error("Impossible to get the profil : ", userError.message);
-        setError("Can't get the profil.");
-              }
-
-              console.log("Données récupérées de User:", userInfo, "Erreur:", userError);
-      localStorage.setItem("user", JSON.stringify(userInfo));
-
-      navigate("/dashboard");
+        if (!userError && userInfo) {
+          setUser(userInfo); // Mettre à jour le contexte avec les données du user
+          navigate("/dashboard");
+        } else {
+          console.error("Erreur en récupérant les infos:", userError?.message);
+        }
+      }
     }
   };
+
 
 
 

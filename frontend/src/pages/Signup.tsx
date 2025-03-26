@@ -53,19 +53,50 @@ const Signup: React.FC = () => {
         },
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
+      // Vérifie si 'data' et 'data.user' existent
+      if (!data?.user) {
+        throw new Error("User creation failed. Please try again.");
+      }
+
+      // Vérifie les identités de l'utilisateur (s'il est déjà inscrit ou non)
       if (data.user?.identities?.length === 0) {
         throw new Error("User already registered");
+      }
+
+      // Insert the user data into the 'User' table
+      try {
+        const { data: userData, error: insertError } = await supabase
+          .from("User")
+          .insert([
+            {
+              auth_id: data.user.id, // Assurez-vous que 'data.user.id' existe
+              username: formData.username,
+              email: formData.email,
+            },
+          ])
+          .select();
+
+        if (insertError) throw insertError;
+
+        console.log(userData);
+      } catch (error) {
+        throw new Error("Ooops, something went wrong while saving user data.");
       }
 
       navigate("/verify-email"); // Redirect to email verification page
     } catch (error) {
       console.error("Signup error:", error);
-      setError("Signup failed. Please try again.");
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Signup failed. Please try again."
+      );
     }
   };
-
   return (
     <div className={styles["auth-container"]}>
       <div className={styles["login-box"]}>
@@ -118,20 +149,26 @@ const Signup: React.FC = () => {
             >
               Sign up →
             </button>
-            
           </div>
         </form>
-        <div className={styles['separator']}>
-          <span className={styles['line']}></span>
-          <span className={styles['or-text']}>or</span>
-          <span className={styles['line']}></span>
+        <div className={styles["separator"]}>
+          <span className={styles["line"]}></span>
+          <span className={styles["or-text"]}>or</span>
+          <span className={styles["line"]}></span>
         </div>
-        <div className={styles['social-login']}>
-          <button className={styles['social-button']}><img src={googleIcon} alt="Google" /></button>
-          <button className={styles['social-button']}><img src={appleIcon} alt="Apple" /></button>
+        <div className={styles["social-login"]}>
+          <button className={styles["social-button"]}>
+            <img src={googleIcon} alt="Google" />
+          </button>
+          <button className={styles["social-button"]}>
+            <img src={appleIcon} alt="Apple" />
+          </button>
         </div>
-        <p className={styles['register-text']}>
-          Already have an account? <span onClick={() => navigate('/login')} className={styles['link']}>Log in</span>
+        <p className={styles["register-text"]}>
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")} className={styles["link"]}>
+            Log in
+          </span>
         </p>
       </div>
     </div>
