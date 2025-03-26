@@ -118,9 +118,21 @@ const Signup: React.FC = () => {
             >
               Sign up →
             </button>
+            
           </div>
         </form>
-        {/* ... rest of your JSX ... */}
+        <div className={styles['separator']}>
+          <span className={styles['line']}></span>
+          <span className={styles['or-text']}>or</span>
+          <span className={styles['line']}></span>
+        </div>
+        <div className={styles['social-login']}>
+          <button className={styles['social-button']}><img src={googleIcon} alt="Google" /></button>
+          <button className={styles['social-button']}><img src={appleIcon} alt="Apple" /></button>
+        </div>
+        <p className={styles['register-text']}>
+          Already have an account? <span onClick={() => navigate('/login')} className={styles['link']}>Log in</span>
+        </p>
       </div>
     </div>
   );

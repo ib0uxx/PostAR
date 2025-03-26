@@ -4,7 +4,7 @@ import Input from "../components/Input";
 import styles from "../styles/auth.module.css";
 import googleIcon from "../assets/google.png";
 import appleIcon from "../assets/apple.png";
-import { supabase } from "../../../backend/supabaseClient"; // Import du client Supabase
+import { supabase } from "../../../backend/supabaseClient"; 
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  // 1. Connexion email/password
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -25,12 +24,32 @@ const Login: React.FC = () => {
 
     if (error) {
       setError(error.message);
-    } else {
-      navigate("/dashboard"); // Redirection après connexion
+      return
+    }
+
+    if (data.user) {
+      const userId = data.user.id;
+      console.log(userId);
+      const { data: userInfo, error: userError } = await supabase
+        .from("User")
+        .select("*")
+        .eq("auth_id", userId)
+        .maybeSingle();
+
+      if (userError) {
+        console.error("Impossible to get the profil : ", userError.message);
+        setError("Can't get the profil.");
+              }
+
+              console.log("Données récupérées de User:", userInfo, "Erreur:", userError);
+      localStorage.setItem("user", JSON.stringify(userInfo));
+
+      navigate("/dashboard");
     }
   };
 
-  // 2. Connexion via Google (OAuth)
+
+
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -39,7 +58,7 @@ const Login: React.FC = () => {
     if (error) setError(error.message);
   };
 
-  // 3. Connexion via Apple (OAuth)
+
   const handleAppleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "apple",
