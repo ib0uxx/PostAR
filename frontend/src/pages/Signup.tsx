@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
-import styles from "../auth.module.css";
+import styles from "../styles/auth.module.css";
 import googleIcon from "../assets/google.png";
 import appleIcon from "../assets/apple.png";
 import { supabase } from "../../../backend/supabaseClient";
@@ -9,6 +9,7 @@ import { supabase } from "../../../backend/supabaseClient";
 const Signup: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -71,6 +72,14 @@ const Signup: React.FC = () => {
         <h1 className={styles["title"]}>Sign up</h1>
         {error && <div className={styles["error-message"]}>{error}</div>}
         <form onSubmit={handleSignup}>
+          <Input
+            type="username"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
           <Input
             type="email"
             name="email" // Add name attribute
