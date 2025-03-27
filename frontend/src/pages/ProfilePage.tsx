@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/profile.module.css";
 import Navbar from "../components/Navbar";
 import MobileNavbar from "../components/MobileNavbar";
-import profilePic from "../assets/profile.png";
+import profilePic from "../assets/no-profile.png";
 import { FaEdit, FaCheckCircle } from "react-icons/fa";
 import { useUser } from "../UserContext";
 import { useNavigate } from "react-router-dom";

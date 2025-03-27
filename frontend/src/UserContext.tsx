@@ -21,9 +21,14 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(() =>
-    JSON.parse(sessionStorage.getItem("user") || "null")
-  );
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = JSON.parse(sessionStorage.getItem("user") || "null");
+    // Définir un avatar par défaut si l'avatar est absent
+    if (storedUser && !storedUser.avatar) {
+      storedUser.avatar = "assets/no-profile.png"; // Remplacer par ton URL
+    }
+    return storedUser;
+  });
 
   useEffect(() => {
     if (user) {

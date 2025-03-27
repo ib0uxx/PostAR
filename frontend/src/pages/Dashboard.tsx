@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import MobileNavbar from "../components/MobileNavbar";
 import styles from "../styles/dashboard.module.css";
-import profilePic from "../assets/profile.png";
+import profilePic from "../assets/no-profile.png";
 import { useUser } from "../UserContext";
 
 const Dashboard: React.FC = () => {
@@ -50,7 +50,11 @@ const Dashboard: React.FC = () => {
       <Navbar />
 
       <div className={styles.content}>
-        <img src={user?.avatar} alt="Profile" className={styles.profileImage} />
+        <img
+          src={profilePic} // Utilise l'avatar si disponible, sinon une image par défaut
+          alt="Profile"
+          className={styles.profileImage}
+        />
         <div className={styles.textContainer}>
           <h1 className={styles.greeting}>
             Hello <br />{" "}
