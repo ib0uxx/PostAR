@@ -80,7 +80,8 @@
 <body>
 
     <div class="container">
-        <h2>Registrar Administrador</h2>
+        <h2>Register Administrator</h2>
+        <input type="text" id="username" placeholder="Username" required>
         <input type="email" id="email" placeholder="E-mail" required>
         <input type="password" id="password" placeholder="Password" required>
         <input type="password" id="confirmPassword" placeholder="Confirm password" required>
@@ -90,52 +91,92 @@
         <button class="back-btn" onclick="window.location.href='admin-dashboard.html'">Go back to Dashboard</button>
     </div>
 
-    <script>
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
         const supabaseUrl = "https://tbzgewjnfcjviexmgnsq.supabase.co"; 
-        const supabaseKey = "TU_ANON_KEY"; 
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiemdld2puZmNqdmlleG1nbnNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3MTkyMjAsImV4cCI6MjA1NzI5NTIyMH0.aGbANeeHSe-MskK3U6z-DJI-x6TSAryHoS6mKonCF6w";  // Replace with environment variable in real projects
+        const supabase = createClient(supabaseUrl, supabaseKey);
 
-        async function registerAdmin() {
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-            const phone = document.getElementById("phone").value;
-            const errorMessage = document.getElementById("error-message");
+    window.registerAdmin = async function registerAdmin() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const phone = document.getElementById("phone").value;
+        const username = document.getElementById("username").value;
+        const errorMessage = document.getElementById("error-message");
 
-            // Limpiar errores previos
-            errorMessage.textContent = "";
+        // Clear previous errors
+        errorMessage.textContent = "";
 
-            if (password !== confirmPassword) {
-                errorMessage.textContent = "The passwords don't match";
-                return;
-            }
-
-            if (password.length < 6) {
-                errorMessage.textContent = "The passwords should at least be 6 characters.";
-                return;
-            }
-
-            try {
-                // Crear usuario en Supabase con metadata de admin
-                const { data, error } = await supabase.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        data: {
-                            role: "admin",  // 🟢 Añadimos el rol en metadata
-                            phone: phone
-                        }
-                    }
-                });
-
-                if (error) throw error;
-
-                alert("Administrator registrated correctly!");
-                window.location.href = "admin-dashboard.html";
-            } catch (error) {
-                errorMessage.textContent = "Error: " + error.message;
-            }
+        // Validate inputs
+        if (!username) {
+            errorMessage.textContent = "Please enter a username.";
+            return;
         }
+
+        if (password !== confirmPassword) {
+            errorMessage.textContent = "The passwords don't match.";
+            return;
+        }
+
+        if (password.length < 6) {
+            errorMessage.textContent = "The password should be at least 6 characters long.";
+            return;
+        }
+
+        if (!username) {
+        errorMessage.textContent = "Please enter a username.";
+        return;
+        }
+
+        try {
+            // Sign up the user with Supabase Auth
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: { role: "admin", username: username, phone: phone }
+                }
+            });
+
+            if (error) throw error;
+
+            const userId = data.user?.id;  // Extract userId from the response
+
+            if (!userId) {
+                throw new Error("Failed to retrieve user ID.");
+            }
+
+            // Short delay to ensure user creation is complete
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Insert user data into the custom 'User' table
+            const { error: insertError } = await supabase
+                .from('User')
+                .insert([{
+                    auth_id: userId,
+                    username: username,
+                    email_address: email,
+                    admin: true,
+                    phone: phone,
+                    password: password,
+                    first_name: null,
+                    last_name: null,
+                    birth_date: null,
+                    description: null
+                }]);
+
+            if (insertError) {
+                throw insertError;
+            }
+
+            alert("Administrator registered correctly!");
+            window.location.href = "admin-dashboard.html";
+        } catch (error) {
+            errorMessage.textContent = "Error: " + error.message;
+        }
+    }
+
     </script>
 
 </body>
