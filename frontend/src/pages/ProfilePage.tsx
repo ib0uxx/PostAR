@@ -5,11 +5,16 @@ import MobileNavbar from "../components/MobileNavbar";
 import profilePic from "../assets/profile.png";
 import { FaEdit, FaCheckCircle } from "react-icons/fa";
 import { useUser } from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage: React.FC = () => {
-  const { user } = useUser();
-  console.log({ user });
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  };
   return (
     <div className={styles.profileWrapper}>
       {/* Navbar Desktop */}
@@ -32,7 +37,7 @@ const ProfilePage: React.FC = () => {
               <div className={styles.userInfo}>
                 <h3>{user?.username || "John Doe"} </h3>
                 <p className={styles.email}>
-                  {user?.email || "johndoe@yay.com"}
+                  {user?.email_address || "johndoe@yay.com"}
                 </p>
               </div>
             </div>
@@ -58,7 +63,9 @@ const ProfilePage: React.FC = () => {
           <div className={styles.options}>
             <button>About App</button>
             <button>Contact us</button>
-            <button className={styles.logout}>Logout</button>
+            <button className={styles.logout} onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
       </div>

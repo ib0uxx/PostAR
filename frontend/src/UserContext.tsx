@@ -8,8 +8,9 @@ import {
 
 interface User {
   id: string;
-  email: string;
+  email_address: string;
   username: string;
+  avatar: string;
 }
 
 interface UserContextType {

@@ -49,7 +49,7 @@ const Signup: React.FC = () => {
         email: formData.email,
         password: formData.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/dashboard`,
+          emailRedirectTo: `${window.location.origin}/login`,
         },
       });
 
@@ -67,27 +67,24 @@ const Signup: React.FC = () => {
         throw new Error("User already registered");
       }
 
-      // Insert the user data into the 'User' table
-      try {
-        const { data: userData, error: insertError } = await supabase
-          .from("User")
-          .insert([
-            {
-              auth_id: data.user.id, // Assurez-vous que 'data.user.id' existe
-              username: formData.username,
-              email: formData.email,
-            },
-          ])
-          .select();
+      const { error: insertError } = await supabase.from("User").insert([
+        {
+          auth_id: data.user.id,
+          username: formData.username,
+          email_address: formData.email,
+          password: formData.password, // Insert password to avoid null constraint violation
+          admin: false,
+          phone: null,
+          first_name: null,
+          last_name: null,
+          birth_date: null,
+          description: null,
+        },
+      ]);
 
-        if (insertError) throw insertError;
+      if (insertError) console.log(insertError);
 
-        console.log(userData);
-      } catch (error) {
-        throw new Error("Ooops, something went wrong while saving user data.");
-      }
-
-      navigate("/verify-email"); // Redirect to email verification page
+      navigate("/VerifyEmail"); // Redirect to email verification page
     } catch (error) {
       console.error("Signup error:", error);
       setError(

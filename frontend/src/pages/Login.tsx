@@ -4,7 +4,7 @@ import Input from "../components/Input";
 import styles from "../styles/auth.module.css";
 import googleIcon from "../assets/google.png";
 import appleIcon from "../assets/apple.png";
-import { supabase } from "../../../backend/supabaseClient"; 
+import { supabase } from "../../../backend/supabaseClient";
 import { useUser } from "../UserContext";
 
 const Login: React.FC = () => {
@@ -46,9 +46,6 @@ const Login: React.FC = () => {
     }
   };
 
-
-
-
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -56,7 +53,6 @@ const Login: React.FC = () => {
 
     if (error) setError(error.message);
   };
-
 
   const handleAppleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({

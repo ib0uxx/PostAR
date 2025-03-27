@@ -50,11 +50,7 @@ const Dashboard: React.FC = () => {
       <Navbar />
 
       <div className={styles.content}>
-        <img
-          src={user?.username || "John"}
-          alt="Profile"
-          className={styles.profileImage}
-        />
+        <img src={user?.avatar} alt="Profile" className={styles.profileImage} />
         <div className={styles.textContainer}>
           <h1 className={styles.greeting}>
             Hello <br />{" "}
